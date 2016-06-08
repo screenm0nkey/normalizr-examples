@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import shop from '../api/shop';
-import github from '../api/github'
+import * as github from '../api/github'
 
 class Button extends Component {
   constructor(props) {
@@ -9,17 +9,20 @@ class Button extends Component {
   }
 
   componentDidMount () {
-    this.log(github.getUser());
-    this.log(github.getSingleStarred());
-    this.log(github.getStarred());
-    this.log(shop.getProduct());
-    this.log(shop.getProducts());
+    this.log('github.getUser', github.getUser());
+    this.log('github.getUsers', github.getUsers());
+    this.log('github.getSingleStarred', github.getSingleStarred());
+    this.log('github.getStarred', github.getStarred());
+    this.log('shop.getProduct', shop.getProduct());
+    this.log('shop.getProduct', shop.getProducts());
   }
 
-  log(data) {
-    console.log(1, data[1]); //before
-    console.log(2, data[0]); //after
-    console.log('\n\n');
+  log(name, data) {
+    console.groupCollapsed(name);
+    console.log(1, 'before', data[1]); //before
+    console.log(2, 'after', data[0]); //after
+    console.groupEnd(name);
+    console.log('\n');
   }
 
   render() {
